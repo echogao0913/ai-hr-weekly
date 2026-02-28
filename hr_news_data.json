@@ -1,110 +1,110 @@
 [
   {
-    "title": "AI驱动薪酬智能化：2024年企业薪酬管理新趋势",
-    "description": "随着AI技术的发展，越来越多企业开始使用智能薪酬系统进行薪酬设计、市场对标和薪酬预测，实现薪酬管理的科学化和精细化。",
-    "category": "薪酬福利",
+    "title": "AI驱动的智能招聘：如何用ChatGPT优化招聘流程",
+    "description": "详细介绍了如何使用ChatGPT和其他AI工具来优化简历筛选、候选人沟通和面试评估等招聘环节，提升招聘效率和质量。",
+    "category": "人才发展",
     "source": "HRoot",
-    "link": "https://www.hroot.com/",
+    "link": "https://www.hroot.com/contents/127/332841.html",
     "week": "2026年第9周",
-    "date": "2026年02月23日"
+    "date": "2026年02月28日"
   },
   {
-    "title": "弹性福利平台：AI驱动的个性化员工福利方案",
-    "description": "基于AI推荐算法，根据员工年龄、家庭状况、偏好等信息，为每位员工推荐最适合的福利组合，提升福利投资回报率。",
-    "category": "薪酬福利",
-    "source": "Benefits Pro",
-    "link": "https://www.hroot.com/",
-    "week": "2026年第9周",
-    "date": "2026年02月23日"
-  },
-  {
-    "title": "数字化转型下的组织敏捷：AI助力组织效能提升",
-    "description": "企业通过AI技术分析组织协作网络、沟通效率和工作模式，识别组织瓶颈，优化组织结构，提升整体效能。",
+    "title": "2024人力资源数字化转型白皮书：AI赋能HR新时代",
+    "description": "全面解析AI技术在薪酬管理、绩效考核、人才发展等HR模块的应用现状和未来趋势，为企业数字化转型提供参考。",
     "category": "组织发展",
-    "source": "LinkedIn领英",
-    "link": "https://www.linkedin.com/pulse/topics/home/",
-    "week": "2026年第9周",
-    "date": "2026年02月23日"
-  },
-  {
-    "title": "劳动力分析进入智能时代：People Analytics的AI升级",
-    "description": "AI技术使People Analytics从描述性分析升级到预测性和规范性分析，为HR决策提供更强大的数据支持。",
-    "category": "组织发展",
-    "source": "SHRM",
-    "link": "https://www.shrm.org/",
-    "week": "2026年第9周",
-    "date": "2026年02月23日"
-  },
-  {
-    "title": "企业文化监测新工具：AI如何实时感知组织氛围",
-    "description": "利用自然语言处理技术分析员工调研、内部沟通等文本数据，实时监测企业文化健康度，及时发现文化风险。",
-    "category": "企业文化",
-    "source": "Culture Amp",
-    "link": "https://www.cultureamp.com/",
-    "week": "2026年第9周",
-    "date": "2026年02月23日"
-  },
-  {
-    "title": "ChatGPT赋能企业培训：个性化学习成为可能",
-    "description": "大语言模型正在改变企业培训方式，通过AI技术可以为每位员工定制学习路径，实时解答疑问，极大提升培训效果。",
-    "category": "人才发展",
-    "source": "三茅人力资源网",
-    "link": "https://www.hrloo.com/",
-    "week": "2026年第9周",
-    "date": "2026年02月23日"
-  },
-  {
-    "title": "智能招聘时代：AI如何帮助HR找到最合适的候选人",
-    "description": "从简历智能筛选、视频面试分析到候选人画像构建，AI技术正在全面革新招聘流程，提高招聘效率和准确性。",
-    "category": "人才发展",
     "source": "人力资源智享会",
     "link": "https://www.hrecchina.org/",
     "week": "2026年第9周",
-    "date": "2026年02月23日"
+    "date": "2026年02月28日"
   },
   {
-    "title": "离职预测模型：用AI降低核心人才流失率",
-    "description": "通过机器学习分析员工行为、绩效、满意度等数据，HR可以提前3-6个月预测员工离职风险，及时采取保留措施。",
+    "title": "生成式AI如何改变企业培训：个性化学习的实践与探索",
+    "description": "探讨ChatGPT等大语言模型在企业培训中的应用，包括个性化课程生成、智能答疑、学习效果评估等创新实践。",
     "category": "人才发展",
-    "source": "People Analytics",
-    "link": "https://www.hroot.com/",
+    "source": "三茅人力资源网",
+    "link": "https://www.hrloo.com/rz/14495821.html",
     "week": "2026年第9周",
-    "date": "2026年02月23日"
+    "date": "2026年02月28日"
   },
   {
-    "title": "智能继任计划：AI识别高潜人才和未来领导者",
-    "description": "AI技术可以综合分析员工能力、绩效、潜力等多维度数据，为企业识别高潜人才，建立领导力梯队。",
-    "category": "人才发展",
-    "source": "德勤人力资本",
-    "link": "https://www2.deloitte.com/cn/zh/pages/human-capital/articles/human-capital.html",
-    "week": "2026年第9周",
-    "date": "2026年02月23日"
-  },
-  {
-    "title": "2026年HR科技趋势：生成式AI将如何改变人力资源管理",
-    "description": "从招聘、培训到绩效管理，生成式AI正在全面渗透HR各个模块，预计未来3年将彻底改变HR工作方式。",
-    "category": "人才发展",
-    "source": "36氪",
-    "link": "https://36kr.com/information/hr_tech/",
-    "week": "2026年第9周",
-    "date": "2026年02月23日"
-  },
-  {
-    "title": "员工体验升级：AI聊天机器人在HR服务中的落地实践",
-    "description": "智能HR助手可以7x24小时回答员工关于薪酬、假期、福利等问题，极大提升了员工体验和HR工作效率。",
+    "title": "RPA+AI：人力共享服务中心的智能化升级之路",
+    "description": "分享某大型企业HRSSC通过RPA和AI技术实现自动化流程优化的实践案例，包括员工入职、薪酬核算等场景。",
     "category": "SSC",
     "source": "HR科技云图",
     "link": "https://www.hrtechchina.com/",
     "week": "2026年第9周",
-    "date": "2026年02月23日"
+    "date": "2026年02月28日"
   },
   {
-    "title": "RPA在人力共享服务中心的应用：释放HR价值",
-    "description": "通过RPA和AI技术实现入离调转、考勤薪酬等事务性工作的自动化处理，让HR专注于更具战略价值的工作。",
-    "category": "SSC",
-    "source": "HRSSC研究院",
-    "link": "https://www.hrloo.com/",
+    "title": "智能薪酬系统：AI如何帮助企业设计更公平的薪酬体系",
+    "description": "介绍AI技术在薪酬市场对标、内部公平性分析、薪酬预测等方面的应用，帮助HR制定更科学合理的薪酬策略。",
+    "category": "薪酬福利",
+    "source": "LinkedIn领英",
+    "link": "https://www.linkedin.com/pulse/topics/human-resources/",
     "week": "2026年第9周",
-    "date": "2026年02月23日"
+    "date": "2026年02月28日"
+  },
+  {
+    "title": "离职预测模型实战：用机器学习降低核心人才流失率",
+    "description": "通过真实案例讲解如何构建员工离职预测模型，包括数据收集、特征工程、模型训练和业务应用等全流程。",
+    "category": "人才发展",
+    "source": "People Analytics",
+    "link": "https://www.hroot.com/contents/127/",
+    "week": "2026年第9周",
+    "date": "2026年02月28日"
+  },
+  {
+    "title": "企业文化数字化：AI如何帮助监测和塑造组织文化",
+    "description": "利用自然语言处理技术分析员工反馈、内部沟通数据，实时监测企业文化健康度，为文化建设提供数据支撑。",
+    "category": "企业文化",
+    "source": "Culture Amp",
+    "link": "https://www.cultureamp.com/blog",
+    "week": "2026年第9周",
+    "date": "2026年02月28日"
+  },
+  {
+    "title": "弹性福利平台的AI推荐算法：千人千面的员工福利方案",
+    "description": "深入分析基于AI推荐算法的弹性福利平台，如何根据员工画像推荐个性化福利组合，提升员工满意度和福利ROI。",
+    "category": "薪酬福利",
+    "source": "Benefits Technology",
+    "link": "https://www.hroot.com/contents/135/",
+    "week": "2026年第9周",
+    "date": "2026年02月28日"
+  },
+  {
+    "title": "People Analytics进化论：从描述性到预测性分析",
+    "description": "探讨AI如何推动People Analytics从简单的数据报表升级到预测性和规范性分析，为HR决策提供更强大的数据支持。",
+    "category": "组织发展",
+    "source": "SHRM",
+    "link": "https://www.shrm.org/topics-tools/news/technology/ai-hr-people-analytics",
+    "week": "2026年第9周",
+    "date": "2026年02月28日"
+  },
+  {
+    "title": "智能继任计划：AI如何识别和培养未来领导者",
+    "description": "介绍如何运用AI技术综合分析员工能力、绩效、潜力等多维度数据，构建科学的继任计划和人才梯队。",
+    "category": "人才发展",
+    "source": "德勤人力资本",
+    "link": "https://www2.deloitte.com/cn/zh/pages/human-capital/articles/human-capital.html",
+    "week": "2026年第9周",
+    "date": "2026年02月28日"
+  },
+  {
+    "title": "ChatGPT在HR场景的100个应用案例",
+    "description": "汇总ChatGPT在招聘、培训、绩效管理、员工关系等HR各模块的实用案例，附详细操作指南和Prompt模板。",
+    "category": "人才发展",
+    "source": "36氪",
+    "link": "https://36kr.com/project/1799819885569",
+    "week": "2026年第9周",
+    "date": "2026年02月28日"
+  },
+  {
+    "title": "智能HR助手：7x24小时的员工服务体验升级",
+    "description": "展示AI聊天机器人在HRSSC中的应用效果，如何快速响应员工咨询，处理高频HR问题，提升员工满意度。",
+    "category": "SSC",
+    "source": "HR Tech China",
+    "link": "https://www.hrtechchina.com/articles",
+    "week": "2026年第9周",
+    "date": "2026年02月28日"
   }
 ]

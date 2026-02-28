@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI+HR文章收集工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            margin-left: 10px;
+        }
+
+        .article-list {
+            margin-top: 40px;
+        }
+
+        .article-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .article-item h3 {
+            color: #2d3436;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .article-item p {
+            color: #636e72;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .article-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .output-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .output-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        #jsonOutput {
+            background: #2d3436;
+            color: #0be881;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+
+        .search-tips {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .search-tips h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .search-tips ul {
+            margin-left: 20px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 AI+HR文章收集工具</h1>
+        <p class="subtitle">收集真实的AI在HR领域应用文章</p>
+
+        <div class="search-tips">
+            <h3>💡 如何找文章？</h3>
+            <ul>
+                <li>在百度/谷歌搜索：<strong>"AI 薪酬管理"</strong>、<strong>"ChatGPT HR"</strong>、<strong>"人工智能招聘"</strong></li>
+                <li>访问 HRoot、三茅、36氪等网站搜索AI相关文章</li>
+                <li>在知乎、LinkedIn搜索HR+AI话题</li>
+                <li>找到文章后，复制标题和URL，填入下方表单</li>
+            </ul>
+        </div>
+
+        <form id="articleForm">
+            <div class="form-group">
+                <label>文章标题 *</label>
+                <input type="text" id="title" placeholder="例如：ChatGPT如何改变HR招聘流程" required>
+            </div>
+
+            <div class="form-group">
+                <label>文章链接 (URL) *</label>
+                <input type="url" id="link" placeholder="https://..." required>
+            </div>
+
+            <div class="form-group">
+                <label>文章简介</label>
+                <textarea id="description" placeholder="简单描述文章内容（可选）"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>HR领域分类 *</label>
+                <select id="category" required>
+                    <option value="">请选择...</option>
+                    <option value="薪酬福利">💰 薪酬福利</option>
+                    <option value="人才发展">🎓 人才发展</option>
+                    <option value="组织发展">🏢 组织发展</option>
+                    <option value="企业文化">🎨 企业文化</option>
+                    <option value="SSC">⚙️ SSC共享服务</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>来源网站</label>
+                <input type="text" id="source" placeholder="例如：HRoot、三茅、36氪">
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn">➕ 添加文章</button>
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">清空表单</button>
+            </div>
+        </form>
+
+        <div class="article-list">
+            <h2>📚 已添加的文章 (<span id="articleCount">0</span>)</h2>
+            <div id="articlesList"></div>
+        </div>
+
+        <div class="output-section">
+            <h2>📋 导出JSON数据</h2>
+            <div id="jsonOutput">暂无数据</div>
+            <div class="btn-group">
+                <button class="btn" onclick="copyJSON()">📋 复制JSON</button>
+                <button class="btn" onclick="downloadJSON()">💾 下载JSON文件</button>
+                <button class="btn btn-secondary" onclick="clearAll()">🗑️ 清空所有</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let articles = [];
+
+        // 从localStorage加载数据
+        function loadFromStorage() {
+            const saved = localStorage.getItem('hrArticles');
+            if (saved) {
+                articles = JSON.parse(saved);
+                updateDisplay();
+            }
+        }
+
+        // 保存到localStorage
+        function saveToStorage() {
+            localStorage.setItem('hrArticles', JSON.stringify(articles));
+        }
+
+        // 获取当前周信息
+        function getWeekInfo() {
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 1);
+            const diff = now - start;
+            const oneWeek = 1000 * 60 * 60 * 24 * 7;
+            const weekNum = Math.ceil(diff / oneWeek);
+
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+
+            return {
+                week: `${year}年第${weekNum}周`,
+                date: `${year}年${month}月${day}日`
+            };
+        }
+
+        // 表单提交
+        document.getElementById('articleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const weekInfo = getWeekInfo();
+            const article = {
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value || '点击查看详细内容',
+                category: document.getElementById('category').value,
+                source: document.getElementById('source').value || '未知来源',
+                link: document.getElementById('link').value,
+                week: weekInfo.week,
+                date: weekInfo.date
+            };
+
+            articles.push(article);
+            saveToStorage();
+            updateDisplay();
+            clearForm();
+
+            alert('✅ 文章添加成功！');
+        });
+
+        // 更新显示
+        function updateDisplay() {
+            // 更新文章列表
+            const listDiv = document.getElementById('articlesList');
+            if (articles.length === 0) {
+                listDiv.innerHTML = '<p style="color: #95a5a6; text-align: center;">还没有添加文章</p>';
+            } else {
+                listDiv.innerHTML = articles.map((article, index) => `
+                    <div class="article-item">
+                        <h3>${article.title}</h3>
+                        <p><strong>分类:</strong> ${article.category} | <strong>来源:</strong> ${article.source}</p>
+                        <p>${article.description}</p>
+                        <a href="${article.link}" target="_blank">${article.link}</a>
+                        <button onclick="removeArticle(${index})" style="float: right; background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">删除</button>
+                    </div>
+                `).join('');
+            }
+
+            // 更新计数
+            document.getElementById('articleCount').textContent = articles.length;
+
+            // 更新JSON输出
+            if (articles.length > 0) {
+                document.getElementById('jsonOutput').textContent = JSON.stringify(articles, null, 2);
+            } else {
+                document.getElementById('jsonOutput').textContent = '暂无数据';
+            }
+        }
+
+        // 删除文章
+        function removeArticle(index) {
+            if (confirm('确定要删除这篇文章吗？')) {
+                articles.splice(index, 1);
+                saveToStorage();
+                updateDisplay();
+            }
+        }
+
+        // 清空表单
+        function clearForm() {
+            document.getElementById('articleForm').reset();
+        }
+
+        // 复制JSON
+        function copyJSON() {
+            if (articles.length === 0) {
+                alert('⚠️ 还没有添加任何文章');
+                return;
+            }
+
+            const json = JSON.stringify(articles, null, 2);
+            navigator.clipboard.writeText(json).then(() => {
+                alert('✅ JSON已复制到剪贴板！\n\n接下来：\n1. 打开 hr_news_data.json 文件\n2. 粘贴替换内容\n3. 运行 hr_news_scraper_real.py 更新HTML');
+            }).catch(err => {
+                alert('❌ 复制失败，请手动复制');
+            });
+        }
+
+        // 下载JSON文件
+        function downloadJSON() {
+            if (articles.length === 0) {
+                alert('⚠️ 还没有添加任何文章');
+                return;
+            }
+
+            const json = JSON.stringify(articles, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'hr_news_data.json';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert('✅ JSON文件已下载！\n\n接下来：\n1. 将下载的文件放到项目文件夹\n2. 运行 hr_news_scraper_real.py 更新HTML\n3. 推送到GitHub');
+        }
+
+        // 清空所有
+        function clearAll() {
+            if (confirm('确定要清空所有文章吗？此操作不可恢复！')) {
+                articles = [];
+                saveToStorage();
+                updateDisplay();
+                alert('✅ 已清空所有文章');
+            }
+        }
+
+        // 页面加载时恢复数据
+        loadFromStorage();
+    </script>
+</body>
+</html>
