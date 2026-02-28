@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI在HR领域的每周应用 - 智能人力资源</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .update-info {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .week-section {
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .week-header {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .week-header h2 {
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        .week-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .card-category {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .category-salary { background: #ffeaa7; color: #d63031; }
+        .category-talent { background: #dfe6e9; color: #2d3436; }
+        .category-org { background: #a29bfe; color: #6c5ce7; }
+        .category-culture { background: #fd79a8; color: #e84393; }
+        .category-ssc { background: #74b9ff; color: #0984e3; }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: #2d3436;
+            margin-bottom: 12px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .card-description {
+            color: #636e72;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .card-source {
+            color: #95a5a6;
+            font-size: 0.85rem;
+        }
+
+        .card-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .card-link:hover {
+            color: #764ba2;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            padding: 50px;
+        }
+
+        .no-data {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            color: #636e72;
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .refresh-btn:hover {
+            transform: rotate(180deg) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .refresh-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: #667eea;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI在HR领域的每周应用</h1>
+            <p class="subtitle">探索人工智能如何变革人力资源管理</p>
+            <div class="update-info" id="lastUpdate">最近更新：加载中...</div>
+        </header>
+
+        <div class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">全部领域</button>
+                <button class="filter-btn" data-category="薪酬福利">💰 薪酬福利</button>
+                <button class="filter-btn" data-category="人才发展">🎓 人才发展</button>
+                <button class="filter-btn" data-category="组织发展">🏢 组织发展</button>
+                <button class="filter-btn" data-category="企业文化">🎨 企业文化</button>
+                <button class="filter-btn" data-category="SSC">⚙️ SSC共享服务</button>
+            </div>
+        </div>
+
+        <div id="content" class="loading">
+            正在加载最新内容...
+        </div>
+    </div>
+
+    <button class="refresh-btn" id="refreshBtn" title="刷新内容">
+        <svg viewBox="0 0 24 24">
+            <path d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"/>
+        </svg>
+    </button>
+
+    <script>
+        let allData = [];
+        let currentFilter = 'all';
+
+        // 分类映射
+        const categoryClasses = {
+            '薪酬福利': 'category-salary',
+            '人才发展': 'category-talent',
+            '组织发展': 'category-org',
+            '企业文化': 'category-culture',
+            'SSC': 'category-ssc'
+        };
+
+        // 内嵌数据（可自动更新）
+        const embeddedData = [
+          {
+                    "title": "AI驱动薪酬智能化：2024年企业薪酬管理新趋势",
+                    "description": "随着AI技术的发展，越来越多企业开始使用智能薪酬系统进行薪酬设计、市场对标和薪酬预测，实现薪酬管理的科学化和精细化。",
+                    "category": "薪酬福利",
+                    "source": "HRoot",
+                    "link": "https://www.hroot.com/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "弹性福利平台：AI驱动的个性化员工福利方案",
+                    "description": "基于AI推荐算法，根据员工年龄、家庭状况、偏好等信息，为每位员工推荐最适合的福利组合，提升福利投资回报率。",
+                    "category": "薪酬福利",
+                    "source": "Benefits Pro",
+                    "link": "https://www.hroot.com/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "数字化转型下的组织敏捷：AI助力组织效能提升",
+                    "description": "企业通过AI技术分析组织协作网络、沟通效率和工作模式，识别组织瓶颈，优化组织结构，提升整体效能。",
+                    "category": "组织发展",
+                    "source": "LinkedIn领英",
+                    "link": "https://www.linkedin.com/pulse/topics/home/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "劳动力分析进入智能时代：People Analytics的AI升级",
+                    "description": "AI技术使People Analytics从描述性分析升级到预测性和规范性分析，为HR决策提供更强大的数据支持。",
+                    "category": "组织发展",
+                    "source": "SHRM",
+                    "link": "https://www.shrm.org/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "企业文化监测新工具：AI如何实时感知组织氛围",
+                    "description": "利用自然语言处理技术分析员工调研、内部沟通等文本数据，实时监测企业文化健康度，及时发现文化风险。",
+                    "category": "企业文化",
+                    "source": "Culture Amp",
+                    "link": "https://www.cultureamp.com/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "ChatGPT赋能企业培训：个性化学习成为可能",
+                    "description": "大语言模型正在改变企业培训方式，通过AI技术可以为每位员工定制学习路径，实时解答疑问，极大提升培训效果。",
+                    "category": "人才发展",
+                    "source": "三茅人力资源网",
+                    "link": "https://www.hrloo.com/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "智能招聘时代：AI如何帮助HR找到最合适的候选人",
+                    "description": "从简历智能筛选、视频面试分析到候选人画像构建，AI技术正在全面革新招聘流程，提高招聘效率和准确性。",
+                    "category": "人才发展",
+                    "source": "人力资源智享会",
+                    "link": "https://www.hrecchina.org/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "离职预测模型：用AI降低核心人才流失率",
+                    "description": "通过机器学习分析员工行为、绩效、满意度等数据，HR可以提前3-6个月预测员工离职风险，及时采取保留措施。",
+                    "category": "人才发展",
+                    "source": "People Analytics",
+                    "link": "https://www.hroot.com/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "智能继任计划：AI识别高潜人才和未来领导者",
+                    "description": "AI技术可以综合分析员工能力、绩效、潜力等多维度数据，为企业识别高潜人才，建立领导力梯队。",
+                    "category": "人才发展",
+                    "source": "德勤人力资本",
+                    "link": "https://www2.deloitte.com/cn/zh/pages/human-capital/articles/human-capital.html",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "2026年HR科技趋势：生成式AI将如何改变人力资源管理",
+                    "description": "从招聘、培训到绩效管理，生成式AI正在全面渗透HR各个模块，预计未来3年将彻底改变HR工作方式。",
+                    "category": "人才发展",
+                    "source": "36氪",
+                    "link": "https://36kr.com/information/hr_tech/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "员工体验升级：AI聊天机器人在HR服务中的落地实践",
+                    "description": "智能HR助手可以7x24小时回答员工关于薪酬、假期、福利等问题，极大提升了员工体验和HR工作效率。",
+                    "category": "SSC",
+                    "source": "HR科技云图",
+                    "link": "https://www.hrtechchina.com/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          },
+          {
+                    "title": "RPA在人力共享服务中心的应用：释放HR价值",
+                    "description": "通过RPA和AI技术实现入离调转、考勤薪酬等事务性工作的自动化处理，让HR专注于更具战略价值的工作。",
+                    "category": "SSC",
+                    "source": "HRSSC研究院",
+                    "link": "https://www.hrloo.com/",
+                    "week": "2026年第9周",
+                    "date": "2026年02月23日"
+          }
+];
+
+        // 加载数据
+        async function loadData() {
+            try {
+                // 优先尝试从JSON文件加载
+                try {
+                    const response = await fetch('hr_news_data.json');
+                    if (response.ok) {
+                        allData = await response.json();
+                    } else {
+                        throw new Error('使用内嵌数据');
+                    }
+                } catch (fetchError) {
+                    // 如果fetch失败，使用内嵌数据
+                    allData = embeddedData;
+                    console.log('使用内嵌数据显示内容');
+                }
+
+                displayData();
+                updateLastUpdateTime();
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                // 最后的fallback
+                allData = embeddedData;
+                displayData();
+                updateLastUpdateTime();
+            }
+        }
+
+        // 显示数据
+        function displayData() {
+            const contentDiv = document.getElementById('content');
+
+            if (!allData || allData.length === 0) {
+                contentDiv.innerHTML = '<div class="no-data"><h3>暂无数据</h3><p>请先运行爬虫脚本抓取数据</p></div>';
+                return;
+            }
+
+            // 按周分组
+            const weekGroups = {};
+            allData.forEach(item => {
+                if (currentFilter === 'all' || item.category === currentFilter) {
+                    const weekKey = item.week || '未分类';
+                    if (!weekGroups[weekKey]) {
+                        weekGroups[weekKey] = [];
+                    }
+                    weekGroups[weekKey].push(item);
+                }
+            });
+
+            // 生成HTML
+            let html = '';
+            const sortedWeeks = Object.keys(weekGroups).sort().reverse();
+
+            sortedWeeks.forEach(week => {
+                html += `
+                    <div class="week-section">
+                        <div class="week-header">
+                            <h2>${week}</h2>
+                            <div class="week-date">${weekGroups[week][0].date || ''}</div>
+                        </div>
+                        <div class="cards-grid">
+                `;
+
+                weekGroups[week].forEach(item => {
+                    const categoryClass = categoryClasses[item.category] || 'category-salary';
+                    html += `
+                        <div class="card" onclick="window.open('${item.link}', '_blank')">
+                            <span class="card-category ${categoryClass}">${item.category}</span>
+                            <h3 class="card-title">${item.title}</h3>
+                            <p class="card-description">${item.description || '点击查看详细内容'}</p>
+                            <div class="card-footer">
+                                <span class="card-source">📰 ${item.source || '来源未知'}</span>
+                                <a href="${item.link}" class="card-link" target="_blank" onclick="event.stopPropagation()">查看详情 →</a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            contentDiv.innerHTML = html;
+        }
+
+        // 更新最后更新时间
+        function updateLastUpdateTime() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            });
+            document.getElementById('lastUpdate').textContent = `最近更新：${dateStr}`;
+        }
+
+        // 筛选功能
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.category;
+                displayData();
+            });
+        });
+
+        // 刷新按钮
+        document.getElementById('refreshBtn').addEventListener('click', loadData);
+
+        // 页面加载时获取数据
+        loadData();
+    </script>
+</body>
+</html>
